@@ -1,0 +1,350 @@
+:root {
+    --primary-color: #132d46;
+    --secondary-color: #1a1e29;
+    --accent-color: #01c38e;
+    --success-color: #01c38e;
+    --info-color: #01c38e;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #ffffff;
+    --dark-color: #1a1e29;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+    
+}
+
+.math-preview {
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    min-height: 50px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-header .logo h1 {
+    font-size: 1.8rem;
+}
+
+.main-header .logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    margin-left: 1.5rem;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    border-bottom-color: var(--accent-color);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.main-nav a.active {
+    border-bottom-color: white;
+    font-weight: bold;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        clip-path: circle(0px at 90% -10%);
+        transition: all 0.5s ease-out;
+        pointer-events: none;
+    }
+
+    .main-nav.open {
+        clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        height: 100vh;
+        padding: 2rem;
+    }
+
+    .main-nav li {
+        margin: 1rem 0;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Steps & Matrix display */
+.step-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    background-color: var(--primary-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 0.9rem;
+}
+
+.step-action {
+    margin: 0;
+    color: var(--dark-color);
+}
+
+.step-explanation {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.matrix-preview {
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+.matrix-container {
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 0.5rem;
+    background-color: #ffffff;
+}
+
+.matrix-row {
+    display: flex;
+    margin: 0.25rem 0;
+}
+
+.matrix-cell {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    min-width: 60px;
+    border-right: 1px solid #ddd;
+}
+
+.matrix-cell:last-child {
+    border-right: none;
+}
+
+.rhs-cell {
+    background-color: #ffe6f0;
+    font-weight: bold;
+}
+
+.solution-list {
+    list-style: none;
+    padding: 0;
+}
+
+.solution-list li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.solution-value {
+    font-weight: bold;
+    color: var(--success-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .step-card {
+        padding: 1rem;
+    }
+
+    .matrix-cell {
+        min-width: 50px;
+        padding: 0.3rem 0.5rem;
+    }
+}
+
+.matrix-display {
+    font-family: 'Courier New', monospace;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.matrix-grid {
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 2px;
+    background-color: #f5f5f5;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.matrix-cell {
+    background-color: white;
+    padding: 8px 12px;
+    text-align: center;
+    border-radius: 4px;
+    min-width: 60px;
+}
+
+.matrix-header {
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+.matrix-rhs {
+    background-color: #fff0f0;
+    font-weight: bold;
+}
+
+.matrix-pivot {
+    background-color: #d4edda;
+    font-weight: bold;
+}
+
+/* Mejoras para los pasos de solución */
+.solution-step {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--warning-color);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.solution-step h4 {
+    color: var(--warning-color);
+    margin-bottom: 0.5rem;
+}
+
+.solution-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.solution-value {
+    background-color: var(--light-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Para la vista responsive */
+@media (max-width: 768px) {
+    .matrix-cell {
+        min-width: 40px;
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .solution-step {
+        padding: 0.8rem;
+    }
+}
+
+
+
+

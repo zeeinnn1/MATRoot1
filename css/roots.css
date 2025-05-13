@@ -1,0 +1,149 @@
+/* Estilos para el contenedor principal */
+.graph-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+/* Teclado matemático mejorado */
+.math-keyboard {
+    display: none;
+    position: fixed;
+    width: 320px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    user-select: none;
+    border: 1px solid #dee2e6;
+}
+
+.keyboard-header {
+    padding: 10px 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyboard-body {
+    padding: 10px;
+}
+
+.keyboard-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.keyboard-key {
+    width: 50px;
+    height: 50px;
+    margin: 0 3px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard-key:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-key[data-backspace], 
+.keyboard-key[data-clear] {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.keyboard-key[data-backspace]:hover, 
+.keyboard-key[data-clear]:hover {
+    background-color: #f5c6cb;
+}
+
+/* Estilos para la tabla de resultados */
+.table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 10;
+}
+
+/* Estilos para el gráfico */
+canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Estilos para la vista previa matemática */
+.math-preview {
+    min-height: 50px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .math-keyboard {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .keyboard-key {
+        width: 45px;
+        height: 45px;
+        font-size: 14px;
+    }
+    
+    .graph-container {
+        height: 300px;
+    }
+}
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table td.text-success {
+    font-weight: bold;
+}
+
+.table td.text-warning {
+    font-style: italic;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(108, 99, 255, 0.1);
+}
+.graph-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    background-color: white;
+}
+

@@ -1,0 +1,195 @@
+/* Estructura principal */
+.graphing-container {
+    padding: 20px;
+    height: calc(100vh - 120px);
+}
+
+.sidebar {
+    height: 100%;
+    padding-right: 15px;
+}
+
+/* Gráfico principal */
+.graph-wrapper {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 200px);
+    min-height: 500px;
+}
+
+#function-chart {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.graph-coordinates {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de funciones */
+#functions-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.function-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 4px solid #4285F4;
+}
+
+.function-item:hover {
+    background-color: #e9ecef;
+}
+
+.function-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.function-actions .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Teclado matemático */
+.math-keyboard {
+    display: none;
+    position: fixed;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    user-select: none;
+    border: 1px solid #dee2e6;
+}
+
+.keyboard-header {
+    padding: 10px 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyboard-body {
+    padding: 10px;
+}
+
+.keyboard-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.keyboard-key {
+    width: 50px;
+    height: 50px;
+    margin: 0 3px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard-key:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-key[data-backspace], 
+.keyboard-key[data-clear] {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.keyboard-key[data-backspace]:hover, 
+.keyboard-key[data-clear]:hover {
+    background-color: #f5c6cb;
+}
+
+/* Modal */
+.math-preview {
+    min-height: 50px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .graphing-container {
+        height: auto;
+    }
+    
+    .sidebar {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .graph-wrapper {
+        height: 500px;
+    }
+    
+    .math-keyboard {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 10px 10px 0 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .keyboard-key {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+
+#function-chart {
+    cursor: crosshair;
+}
+
+.graph-coordinates {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    pointer-events: none; 
+}
+
