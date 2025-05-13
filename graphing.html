@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathTools - Gráficador de Funciones</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/graphing.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html">MATRoot</a></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="roots.html"><i class="fas fa-square-root-alt"></i> Raíces</a></li>
+                    <li><a href="systems.html"><i class="fas fa-project-diagram"></i> Sistemas</a></li>
+                    <li><a href="graphing.html"class="active"><i class="fas fa-chart-line"></i> Gráficos</a></li>
+                    <li><a href="features.html"><i class="fas fa-info-circle"></i> Características</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container-fluid graphing-container">
+        <div class="row">
+            <!-- Panel de control lateral -->
+            <div class="col-md-4 col-lg-3 sidebar">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-dark text-white">
+                        <h3><i class="fas fa-sliders-h"></i> Controles</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h5 class="border-bottom pb-2"><i class="fas fa-function"></i> Funciones</h5>
+                            <div id="functions-list">
+                                <!-- Funciones se agregarán dinámicamente aquí -->
+                            </div>
+                            <button type="button" id="add-function-btn" class="btn btn-sm btn-primary mt-2" style="background-color: #01c38e; border-color: #01c38e; box-shadow: none;">
+                                <i class="fas fa-plus"></i> Agregar Función
+                            </button>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="border-bottom pb-2"><i class="fas fa-chart-line" ></i> Vista</h5>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" style="background-color: #01c38e;border-color: #01c38e; box-shadow: none; " id="grid-toggle" checked>
+                                <label class="form-check-label" for="grid-toggle">Mostrar cuadrícula</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" style="background-color: #01c38e;border-color: #01c38e; box-shadow: none; " id="axes-toggle" checked>
+                                <label class="form-check-label" for="axes-toggle">Mostrar ejes</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" style="background-color: #01c38e;border-color: #01c38e; box-shadow: none; " id="points-toggle" checked>
+                                <label class="form-check-label" for="points-toggle">Mostrar puntos clave</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5 class="border-bottom pb-2"><i class="fas fa-ruler"></i> Rango</h5>
+                            <div class="row g-2 mb-2">
+                                <div class="col-6">
+                                    <label for="x-min" class="form-label">X mín</label>
+                                    <input type="number" class="form-control" id="x-min" value="-10" step="1">
+                                </div>
+                                <div class="col-6">
+                                    <label for="x-max" class="form-label">X máx</label>
+                                    <input type="number" class="form-control" id="x-max" value="10" step="1">
+                                </div>
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label for="y-min" class="form-label">Y mín</label>
+                                    <input type="number" class="form-control" id="y-min" value="-5" step="1">
+                                </div>
+                                <div class="col-6">
+                                    <label for="y-max" class="form-label">Y máx</label>
+                                    <input type="number" class="form-control" id="y-max" value="5" step="1">
+                                </div>
+                            </div>
+                            <button type="button" id="auto-range-btn" class="btn btn-sm btn-outline-dark w-100 mt-2">
+                                <i class="fas fa-magic"></i> Ajuste automático
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de gráfico principal -->
+            <div class="col-md-8 col-lg-9">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <h3><i class="fas fa-chart-line"></i> Gráfico</h3>
+                        <div>
+                            <button type="button" id="zoom-in-btn" class="btn btn-sm btn-light">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button type="button" id="zoom-out-btn" class="btn btn-sm btn-light mx-1">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button type="button" id="reset-view-btn" class="btn btn-sm btn-light">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 position-relative">
+                        <div class="graph-wrapper">
+                            <canvas id="function-chart"></canvas>
+                        </div>
+                        <div class="graph-coordinates" id="coordinates-display">
+                            x: 0.00, y: 0.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teclado matemático flotante -->
+        <div class="math-keyboard shadow-lg" id="math-keyboard">
+            <div class="keyboard-header text-white" style="background-color: #132d46 !important;border-color: #132d46 !important;color: white !important;">
+                <h5 class="mb-0"><i class="fas fa-keyboard"></i> Teclado Matemático</h5>
+                <button type="button" class="btn-close btn-close-white" id="keyboard-close"></button>
+            </div>
+            <div class="keyboard-body">
+                <div class="keyboard-section">
+                    <button type="button" class="keyboard-key" data-insert="x">x</button>
+                    <button type="button" class="keyboard-key" data-insert="y">y</button>
+                    <button type="button" class="keyboard-key" data-insert="^">^</button>
+                    <button type="button" class="keyboard-key" data-insert="(">(</button>
+                    <button type="button" class="keyboard-key" data-insert=")">)</button>
+                </div>
+                <div class="keyboard-section">
+                    <button type="button" class="keyboard-key" data-insert="+">+</button>
+                    <button type="button" class="keyboard-key" data-insert="-">-</button>
+                    <button type="button" class="keyboard-key" data-insert="*">×</button>
+                    <button type="button" class="keyboard-key" data-insert="/">÷</button>
+                    <button type="button" class="keyboard-key" data-insert=".">.</button>
+                </div>
+                <div class="keyboard-section">
+                    <button type="button" class="keyboard-key" data-insert="sin(">sin</button>
+                    <button type="button" class="keyboard-key" data-insert="cos(">cos</button>
+                    <button type="button" class="keyboard-key" data-insert="tan(">tan</button>
+                    <button type="button" class="keyboard-key" data-insert="sqrt(">√</button>
+                    <button type="button" class="keyboard-key" data-insert="log(">log</button>
+                </div>
+                <div class="keyboard-section">
+                    <button type="button" class="keyboard-key" data-insert="exp(">e^x</button>
+                    <button type="button" class="keyboard-key" data-insert="pi">π</button>
+                    <button type="button" class="keyboard-key" data-insert="abs(">|x|</button>
+                    <button type="button" class="keyboard-key" data-clear>
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button type="button" class="keyboard-key" data-backspace>
+                        <i class="fas fa-backspace"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para agregar/editar funciones -->
+        <div class="modal fade" id="function-modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-white" style="background-color: #132d46 !important;border-color: #132d46 !important;color: white !important;">
+                        <h5 class="modal-title" id="modal-title" >Agregar Nueva Función</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="function-form">
+                            <div class="mb-3">
+                                <label for="function-expression" class="form-label">Expresión f(x):</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="function-expression" placeholder="Ej: sin(x), x^2-4">
+                                    <button type="button" class="btn btn-outline-secondary" id="modal-keyboard-toggle">
+                                        <i class="fas fa-keyboard"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-2">
+                                    <div id="function-preview" class="math-preview">
+                                        \( f(x) = \)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="function-color" class="form-label">Color:</label>
+                                <input type="color" class="form-control form-control-color" id="function-color" value="#4285F4">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-dark" id="save-function">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 MATRoot - Herramientas Matemáticas</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.6.0/lib/browser/math.min.js"></script>
+    <script src="js/graphing.js"></script>
+</body>
+</html>

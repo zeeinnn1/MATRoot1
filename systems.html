@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MathTools - Búsqueda de Raíces</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/roots.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            main {
+                flex: 1;
+            }
+        </style>
+    <body>
+        <header class="main-header">
+            <div class="container">
+                <div class="logo">
+                    <h1><a href="index.html">MATRoot</a></h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="roots.html"><i class="fas fa-square-root-alt"></i> Raíces</a></li>
+                        <li><a href="systems.html"class="active"><i class="fas fa-project-diagram"></i> Sistemas</a></li>
+                        <li><a href="graphing.html"><i class="fas fa-chart-line"></i> Gráficos</a></li>
+                        <li><a href="features.html"><i class="fas fa-info-circle"></i> Características</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+    
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Configuración del Sistema</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="system-form">
+                            <div class="mb-3">
+                                <label for="system-size" class="form-label">Número de ecuaciones:</label>
+                                <select class="form-select" id="system-size">
+                                    <option value="2">2 ecuaciones</option>
+                                    <option value="3" selected>3 ecuaciones</option>
+                                    <option value="4">4 ecuaciones</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="method-select" class="form-label">Método de solución:</label>
+                                <select class="form-select" id="method-select">
+                                    <option value="gauss">Eliminación Gaussiana</option>
+                                    <option value="gauss-jordan">Gauss-Jordan</option>
+                                    <option value="jacobi">Jacobi</option>
+                                    <option value="gauss-seidel">Gauss-Seidel</option>
+                                </select>
+                            </div>
+                            
+                            <button type="button" id="generate-btn" class="btn btn-warning mb-3" style="
+                            background-color: #01c38e;
+                            border-color: #01c38e;
+                            box-shadow: none;">
+                                Generar Sistema
+                            </button>
+                            
+                            <div id="matrix-container">
+                                <!-- Aquí se generará la matriz dinámicamente -->
+                                <p class="text-muted">Seleccione el número de ecuaciones y haga clic en "Generar Sistema"</p>
+                            </div>
+                            
+                            <button type="button" id="solve-btn" class="btn btn-warning mt-3" style="
+                            background-color: #01c38e;
+                            border-color: #01c38e;
+                            box-shadow: none;" disabled>
+                                Resolver Sistema
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Resultados</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="results-container">
+                            <p class="text-muted">Resuelva un sistema para ver los resultados</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Paso a Paso</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="steps-container">
+                            <p class="text-muted">Los pasos de solución aparecerán aquí</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 MATRoot - Herramientas Matemáticas</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/linear-system.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
